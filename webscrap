@@ -1,0 +1,9 @@
+from bs4 import BeautifulSoup4
+import requests
+
+#url = "https://ugroupcu.com/property-details/502-e-healey-champaign/"
+
+result = requests.get(url)
+
+doc = BeautifulSoup(result.text, "html.parser")
+

@@ -27,9 +27,12 @@ from bs4 import BeautifulSoup
 
 # print(c)
 
-HEADERS = ({'User-Agent':
-            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
-            'Accept-Language': 'en-US, en;q=0.5'})
+HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 
+            'Accept' : 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8', 
+            'Accept-Language' : 'en-US,en;q=0.5',
+            'Accept-Encoding' : 'gzip', 
+            'DNT' : '1', # Do Not Track Request Header 
+            'Connection' : 'close'}
 
 URL = "https://www.amazon.com/Temtop-Professional-0-3%CE%BCm-10%CE%BCm-Particulate-Certified/dp/B087MZ93W2/ref=sr_1_3?keywords=pms+particle+counter&qid=1677284644&sr=8-3"
 webpage = requests.get(URL, headers=HEADERS)

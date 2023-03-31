@@ -29,16 +29,16 @@ HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
             'DNT' : '1', # Do Not Track Request Header 
             'Connection' : 'close'}
 
-URL = "https://chemistry.illinois.edu/academics/course-catalog"
+URL = "https://jsmliving.com/search-available-units?building=All&available=9&rent%5Bmin%5D=0&rent%5Bmax%5D=4500&sort_bef_combine=field_numerical_address_value_ASC"
 webpage = requests.get(URL, headers=HEADERS)
 
 soup = BeautifulSoup(webpage.content, "lxml")
 
 ls = []
 
-for ele in soup.find_all('div', {'class':'views-field views-field-nothing-1'}):
-    name = ele.find('h2').text
-    ls.append(f"{name}")
+for ele in soup.find_all('div', {'class':'unit__card-description'}):
+    price = ele.find('div', {'class':'unit__card-rent'}).text
+    ls.append(f"{price}")
 
 for i in ls:
     print(i)

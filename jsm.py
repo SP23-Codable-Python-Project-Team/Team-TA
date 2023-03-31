@@ -1,5 +1,9 @@
+from bs4 import BeautifulSoup as bs
 import requests
-from bs4 import BeautifulSoup
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
 
 # webpage = requests.get(URL, headers=HEADERS)
 
@@ -34,14 +38,42 @@ webpage = requests.get(URL, headers=HEADERS)
 
 soup = BeautifulSoup(webpage.content, "lxml")
 
-ls = []
+jsmAddress = []
+jsmPrice = []
+jsmBedBath = []
+
+
+for ele in soup.find_all('div', {'class':'field field--name-field-building field--type-entity-reference field--label-hidden field--item'}):
+    address = ele.find('a').text
+    jsmAddress.append(f"{address}")
+
+# for i in jsmAddress:
+#     print(i)
+
 
 for ele in soup.find_all('div', {'class':'unit__card-description'}):
     price = ele.find('div', {'class':'unit__card-rent'}).text
-    ls.append(f"{price}")
+    jsmPrice.append(f"{price}")
 
-for i in ls:
-    print(i)
+# for i in jsmPrice:
+#     print(i)
+
+
+for ele in soup.find_all('div', {'class':'unit__card-description'}):
+    bedBath = ele.find('div', {'class':'unit__card-stats'}).text
+    jsmBedBath.append(f"{bedBath}")
+
+# for i in jsmBedBath:
+#     print(i)
+
+for i in jsmAddress:
+    for j in jsmPrice:
+        for k in jsmBedBath:
+            print(i)
+            print(j)
+            print(k)
+            break
+        break
 
 # # Outer Tag Object
 # title = soup.find("h2", attrs={"class":})
